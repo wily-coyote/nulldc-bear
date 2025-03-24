@@ -50,7 +50,7 @@ Public Class NetworkHandling
         Dim RecieverThread As Thread = New Thread(
             Sub()
                 While (True)
-                    Dim endPoint As IPEndPoint = New IPEndPoint(IPAddress.Any, port)
+                    Dim endPoint As IPEndPoint = New IPEndPoint(IPAddress.Parse(MainformRef.ConfigFile.IPAddress), port)
                     Dim data() As Byte = BEAR_UDPReceiver.Receive(endPoint)
                     Dim message As String = Encoding.ASCII.GetString(data)
                     MessageReceived(message, endPoint.Address.ToString, endPoint.Port.ToString)

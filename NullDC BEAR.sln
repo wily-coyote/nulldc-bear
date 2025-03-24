@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NullDC BEAR", "NullDC CvS2 BEAR\NullDC BEAR.vbproj", "{1FEA19E8-593D-4D10-A766-27A9F14D0265}"
 EndProject
@@ -11,16 +11,26 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NullDC-BEAR-UPDATER", "Null
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FEA19E8-593D-4D10-A766-27A9F14D0265}.Debug|x64.ActiveCfg = Debug|x64
+		{1FEA19E8-593D-4D10-A766-27A9F14D0265}.Debug|x64.Build.0 = Debug|x64
 		{1FEA19E8-593D-4D10-A766-27A9F14D0265}.Debug|x86.ActiveCfg = Debug|x86
 		{1FEA19E8-593D-4D10-A766-27A9F14D0265}.Debug|x86.Build.0 = Debug|x86
+		{1FEA19E8-593D-4D10-A766-27A9F14D0265}.Release|x64.ActiveCfg = Release|x64
+		{1FEA19E8-593D-4D10-A766-27A9F14D0265}.Release|x64.Build.0 = Release|x64
 		{1FEA19E8-593D-4D10-A766-27A9F14D0265}.Release|x86.ActiveCfg = Release|x86
 		{1FEA19E8-593D-4D10-A766-27A9F14D0265}.Release|x86.Build.0 = Release|x86
+		{D0ADE9C7-B28E-4248-B5E8-344A41DC0DDA}.Debug|x64.ActiveCfg = Debug|x64
+		{D0ADE9C7-B28E-4248-B5E8-344A41DC0DDA}.Debug|x64.Build.0 = Debug|x64
 		{D0ADE9C7-B28E-4248-B5E8-344A41DC0DDA}.Debug|x86.ActiveCfg = Debug|x86
 		{D0ADE9C7-B28E-4248-B5E8-344A41DC0DDA}.Debug|x86.Build.0 = Debug|x86
+		{D0ADE9C7-B28E-4248-B5E8-344A41DC0DDA}.Release|x64.ActiveCfg = Release|x64
+		{D0ADE9C7-B28E-4248-B5E8-344A41DC0DDA}.Release|x64.Build.0 = Release|x64
 		{D0ADE9C7-B28E-4248-B5E8-344A41DC0DDA}.Release|x86.ActiveCfg = Release|x86
 		{D0ADE9C7-B28E-4248-B5E8-344A41DC0DDA}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection

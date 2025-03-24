@@ -1,6 +1,8 @@
-# NullDC Netplay Launcher "BEAR" (Beat Em All Raw)
-A nullDC ALL-IN-ONE Launcher and optimizer to ensure easy setup for nullDC(Naomi/Atomidwave/Dreamcast), Mednafen(NES/SNES/Genesis/MegaDrive/GBA/GBC/Neo-Geo Pocket/PSX/Saturn/Famicom Disk Drive) and optimized settings for a smooth gameplay experiance.
-Easy setup easy connection, minimal effort maximum performance.
+# nullDC-BEAR\_fork
+BEAR, short for Beat Em All Raw, is an all-in-one netplay launcher for nullDC, Mednafen and Flycast.
+It provides optimized settings for a smooth gameplay experience, with easy setup.
+
+This fork adds advanced connection options for certain VPNs not supporting the broadcast address as well as a custom Buddy List.
 
 ## Setup Guide
 

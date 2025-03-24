@@ -1,6 +1,8 @@
 ﻿Imports System.IO
+Imports System.Media
 Imports System.Net
 Imports System.Net.NetworkInformation
+Imports System.Net.Sockets
 Imports System.Security.Cryptography
 Imports System.Text
 Imports System.Threading
@@ -298,6 +300,8 @@ UpdateTry:
 
         ForceOpenPanelToolStripMenuItem.Visible = IsBeta
 
+        frmBuddy.PokeBuddyList()
+        frmBuddy.LoadBuddies()
     End Sub
 
     Public Sub LoadThemeSettings()
@@ -353,19 +357,22 @@ UpdateTry:
 
     Public Sub ReloadTheme()
 
-        ApplyThemeToControl(MainMenuContainer)
-        ApplyThemeToControl(PlayerList, 4)
-        ApplyThemeToControl(Matchlist, 5)
+		ApplyThemeToControl(layout)
+		ApplyThemeToControl(leftLayout)
+		ApplyThemeToControl(rightLayout)
+		ApplyThemeToControl(paddingContainer)
+		ApplyThemeToControl(PlayerList, 4)
+		ApplyThemeToControl(Matchlist, 5)
 
         ' Buttons
         ApplyThemeToControl(BtnJoin)
         ApplyThemeToControl(btnOffline)
         ApplyThemeToControl(btnSearch)
 
-        ApplyThemeToControl(Label1, 1)
-        ApplyThemeToControl(Label2, 1)
+		ApplyThemeToControl(NetworkPlayersLabel, 1)
+		ApplyThemeToControl(CurrentMatchesLabel, 1)
 
-        ApplyThemeToControl(_MainMenuStrip)
+		ApplyThemeToControl(_MainMenuStrip)
 
         ApplyThemeToControl(lbVer, 2)
         lbVer.BackColor = BEARTheme.LoadColor(ThemeKeys.MenuStripColor)
@@ -1969,12 +1976,14 @@ UpdateTry:
                 BtnJoin.Text = "Challenge"
                 BtnJoin.Enabled = False
             End If
-            NetworkHandler.SendMessage("?,")
-
-            Dim NameToSend As String = MainformRef.ConfigFile.Name
-            If Not MainformRef.Challenger Is Nothing Then NameToSend = NameToSend & " & " & MainformRef.Challenger.name
-
-            NetworkHandler.SendMessage("<," & NameToSend & ",," & MainformRef.ConfigFile.Port & "," & MainformRef.ConfigFile.Game & "," & MainformRef.ConfigFile.Status)
+            Try
+                NetworkHandler.SendMessage("?,", tbSendTo.Text)
+                Dim NameToSend As String = MainformRef.ConfigFile.Name
+                If Not MainformRef.Challenger Is Nothing Then NameToSend = NameToSend & " & " & MainformRef.Challenger.name
+                NetworkHandler.SendMessage("<," & NameToSend & ",," & MainformRef.ConfigFile.Port & "," & MainformRef.ConfigFile.Game & "," & MainformRef.ConfigFile.Status, tbSendTo.Text)
+            Catch ex As SocketException
+                MessageBox.Show("whoops, couldn't send a WHO IS to that one", "UH OH WORM!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End Try
         Else
             NotificationForm.ShowMessage("Slow down cowboy, wait at least 5 seconds between refreshing")
         End If
@@ -2480,6 +2489,36 @@ UpdateTry:
     Private Sub FlycastToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FlycastToolStripMenuItem.Click
         Process.Start("https://www.paypal.com/paypalme/FlycastEmu")
     End Sub
+
+    Private Sub tbSendTo_KeyDown(sender As Object, e As KeyEventArgs) Handles tbSendTo.KeyDown
+        If e.KeyData.Equals(Keys.Enter) Then
+            btnSearch.PerformClick()
+        End If
+    End Sub
+
+    Private Sub BuddyListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BuddyListToolStripMenuItem.Click
+        If Not Application.OpenForms().OfType(Of frmBuddy).Any Then
+            frmBuddy.Show(Me)
+        Else
+            frmBuddy.Focus()
+        End If
+    End Sub
+
+    Private Sub AddBuddyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddBuddyToolStripMenuItem.Click
+        If SelectedPlayer.name.StartsWith(ConfigFile.Name) Then
+            NotificationForm.ShowMessage("You can't add yourself.")
+            Exit Sub
+        End If
+        If frmBuddy.CheckBuddy(SelectedPlayer.ip) Then
+            NotificationForm.ShowMessage("You already have this person in your Buddy List.")
+            Exit Sub
+        End If
+        frmBuddy.AddBuddy(SelectedPlayer.ip, SelectedPlayer.name)
+        If Application.OpenForms().OfType(Of frmBuddy).Any Then
+            frmBuddy.RefreshBuddyList()
+        End If
+        SystemSounds.Asterisk.Play()
+    End Sub
 End Class
 
 Public Class BEARPlayer
@@ -2538,6 +2577,7 @@ Public Class Configs
     Private _nokey As Int16 = 0
     Private _mintotray As Int16 = 1
     Private _forcemono As Int16 = 0
+    Private _ipaddress As String = "0.0.0.0"
 
 #Region "Properties"
 
@@ -2849,6 +2889,16 @@ Public Class Configs
 
     End Property
 
+    Public Property IPAddress() As String
+        Get
+            Return _ipaddress
+        End Get
+        Set(ByVal value As String)
+            _ipaddress = value
+        End Set
+
+    End Property
+
 #End Region
 
     Public Sub SaveFile(Optional ByVal SendIam As Boolean = True)
@@ -2888,7 +2938,8 @@ Public Class Configs
                 "Region=" & Region,
                 "NoKey=" & NoKey,
                 "MinimizeToTray=" & MinimizeToTray,
-                "ForceMono=" & ForceMono
+                "ForceMono=" & ForceMono,
+                "IPAddress=" & IPAddress
             }
         File.WriteAllLines(NullDCPath & "\NullDC_BEAR.cfg", lines)
 
@@ -2962,6 +3013,7 @@ Public Class Configs
                 If line.StartsWith("NoKey=") Then NoKey = line.Split("=")(1).Trim
                 If line.StartsWith("MinimizeToTray=") Then MinimizeToTray = line.Split("=")(1).Trim
                 If line.StartsWith("ForceMono=") Then ForceMono = line.Split("=")(1).Trim
+                If line.StartsWith("IPAddress=") Then IPAddress = line.Split("=")(1).Trim
             Next
 
             Game = "None"

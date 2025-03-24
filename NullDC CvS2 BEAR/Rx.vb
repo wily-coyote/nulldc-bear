@@ -1337,46 +1337,46 @@ Module BEARTheme
 
     Public Theme As New Dictionary(Of String, String)
 
-    Public Sub ApplyThemeToControl(ByRef _control As Control, Optional _which As Single = 1, Optional _type As Type = Nothing)
+	Public Sub ApplyThemeToControl(ByRef _control As Control, Optional _which As Single = 1, Optional _type As Type = Nothing)
+		Select Case _control.GetType()
+			Case GetType(Button)
+				ApplyButtonTheme(_control)
+			Case GetType(CheckBox)
+				ApplyCheckBoxTheme(_control, _which)
+			Case GetType(ComboBox)
+				ApplyComboBoxTheme(_control)
+			Case GetType(Label)
+				ApplyLabelTheme(_control, _which)
+			Case GetType(GroupBox)
+				ApplyGroupBoxTheme(_control, _which)
+			Case GetType(MenuStrip)
+				ApplyMenuStripTheme(_control)
+			Case GetType(TableLayoutPanel)
+				ApplyTableLayoutPanelTheme(_control, _which)
+			Case GetType(ListView)
+				ApplyListViewTheme(_control, _which)
+			Case GetType(RichTextBox)
+				ApplyRichTextBoxTheme(_control, _which)
+			Case GetType(TextBox)
+				ApplyTextBoxTheme(_control, _which)
+			Case GetType(Form)
+				ApplyFormTheme(_control, _which)
+			Case GetType(MednafenSetting)
+				ApplyMDFTheme(_control, _which)
+			Case GetType(Panel)
+				ApplyPanelTheme(_control, _which)
+			Case GetType(FlowLayoutPanel)
+				ApplyFlowPanelTheme(_control, _which)
+			Case GetType(keybindButton)
+				ApplyKeybindButtonTheme(_control)
+			Case GetType(TabPage)
+				ApplyTabPageTheme(_control, _which)
+			Case GetType(SplitContainer)
+				ApplySplitContainerTheme(_control, _which)
+		End Select
+	End Sub
 
-        Select Case _control.GetType()
-            Case GetType(Button)
-                ApplyButtonTheme(_control)
-            Case GetType(CheckBox)
-                ApplyCheckBoxTheme(_control, _which)
-            Case GetType(ComboBox)
-                ApplyComboBoxTheme(_control)
-            Case GetType(Label)
-                ApplyLabelTheme(_control, _which)
-            Case GetType(GroupBox)
-                ApplyGroupBoxTheme(_control, _which)
-            Case GetType(MenuStrip)
-                ApplyMenuStripTheme(_control)
-            Case GetType(TableLayoutPanel)
-                ApplyTableLayoutPanelTheme(_control, _which)
-            Case GetType(ListView)
-                ApplyListViewTheme(_control, _which)
-            Case GetType(RichTextBox)
-                ApplyRichTextBoxTheme(_control, _which)
-            Case GetType(TextBox)
-                ApplyTextBoxTheme(_control, _which)
-            Case GetType(Form)
-                ApplyFormTheme(_control, _which)
-            Case GetType(MednafenSetting)
-                ApplyMDFTheme(_control, _which)
-            Case GetType(Panel)
-                ApplyPanelTheme(_control, _which)
-            Case GetType(FlowLayoutPanel)
-                ApplyFlowPanelTheme(_control, _which)
-            Case GetType(keybindButton)
-                ApplyKeybindButtonTheme(_control)
-            Case GetType(TabPage)
-                ApplyTabPageTheme(_control, _which)
-        End Select
-
-    End Sub
-
-    Private Sub ApplyTabPageTheme(ByRef _Control As TabPage, ByVal _which As Single)
+	Private Sub ApplyTabPageTheme(ByRef _Control As TabPage, ByVal _which As Single)
         Select Case _which
             Case 1
                 If Not _Control.BackColor = Color.Transparent Then _Control.BackColor = LoadColor(ThemeKeys.PrimaryColor)
@@ -1564,8 +1564,19 @@ Module BEARTheme
         End Select
     End Sub
 
+	Private Sub ApplySplitContainerTheme(ByRef _Control As SplitContainer, ByVal _which As Single)
+		Select Case _which
+			Case 1
+				If Not _Control.BackColor = Color.Transparent Then _Control.BackColor = LoadColor(ThemeKeys.PrimaryColor)
+			Case 2
+				If Not _Control.BackColor = Color.Transparent Then _Control.BackColor = LoadColor(ThemeKeys.SecondaryColor)
+			Case 3
+				If Not _Control.BackColor = Color.Transparent Then _Control.BackColor = LoadColor(ThemeKeys.TertiaryColor)
+		End Select
+	End Sub
 
-    Private Sub ApplyMenuStripTheme(ByRef _Control As MenuStrip)
+
+	Private Sub ApplyMenuStripTheme(ByRef _Control As MenuStrip)
         _Control.BackColor = LoadColor(ThemeKeys.MenuStripColor)
         _Control.ForeColor = LoadColor(ThemeKeys.MenuStripFontColor)
 

@@ -81,6 +81,7 @@ Public Class frmSetup
         cbThemes.DataSource = ThemesFound
         cbThemes.SelectedValue = MainformRef.ConfigFile.Theme
         cb_nullDCPriority.SelectedIndex = MainformRef.ConfigFile.NullDCPriority
+        tbIPAddress.Text = MainformRef.ConfigFile.IPAddress
         FormFilled = True
     End Sub
 
@@ -105,6 +106,7 @@ Public Class frmSetup
         MainformRef.ConfigFile.NullDCPriority = cb_nullDCPriority.SelectedIndex
         MainformRef.ConfigFile.MinimizeToTray = Convert.ToInt32(cb_MinimizeToTray.Checked)
         MainformRef.ConfigFile.ForceMono = Convert.ToInt32(cb_mono.Checked)
+        MainformRef.ConfigFile.IPAddress = tbIPAddress.Text
 
         If cbAllowSpectators.Text = "Yes" Then
             MainformRef.ConfigFile.AllowSpectators = 1
