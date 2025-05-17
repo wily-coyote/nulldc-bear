@@ -1,4 +1,4 @@
-﻿Public Class frmSecret
+Public Class frmSecret
     Dim m_Rnd As New Random
 
     Private Sub frmSecret_Load(sender As Object, e As EventArgs) Handles MyBase.Load

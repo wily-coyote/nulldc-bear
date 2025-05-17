@@ -1,4 +1,4 @@
-﻿Imports System.Net.NetworkInformation
+Imports System.Net.NetworkInformation
 Imports System.Threading
 
 Public Class frmHostPanel

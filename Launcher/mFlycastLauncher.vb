@@ -1,4 +1,4 @@
-﻿Imports System.IO
+Imports System.IO
 Imports System.Threading
 Imports Launcher.frmMain
 Imports SDL2.SDL

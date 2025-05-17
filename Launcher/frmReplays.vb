@@ -1,4 +1,4 @@
-﻿Imports System.IO
+Imports System.IO
 
 Public Class frmReplays
     Dim OpenFileDialog As New OpenFileDialog

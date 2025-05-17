@@ -1,4 +1,4 @@
-﻿Imports System.IO
+Imports System.IO
 Imports SDL2.SDL
 
 Public Class frmMappingString

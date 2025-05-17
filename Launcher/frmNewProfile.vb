@@ -1,4 +1,4 @@
-﻿Imports System.IO
+Imports System.IO
 
 Public Class frmNewProfile
     Private Sub frmNewProfile_Load(sender As Object, e As EventArgs) Handles MyBase.Load

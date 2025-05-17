@@ -1,4 +1,4 @@
-﻿Imports System.Drawing.Drawing2D
+Imports System.Drawing.Drawing2D
 Imports System.IO
 Imports System.Security.Cryptography
 Imports System.Text

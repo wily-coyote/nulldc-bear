@@ -1,4 +1,4 @@
-﻿Public Class frmWaitingForHost
+Public Class frmWaitingForHost
 
     Public VMUTimer As System.Windows.Forms.Timer = New System.Windows.Forms.Timer
 

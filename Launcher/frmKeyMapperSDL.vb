@@ -1,4 +1,4 @@
-﻿Imports System.Runtime.InteropServices
+Imports System.Runtime.InteropServices
 Imports SDL2
 Imports SDL2.SDL
 Imports System.IO

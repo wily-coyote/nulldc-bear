@@ -1,4 +1,4 @@
-﻿Public Class frmChallengeSent
+Public Class frmChallengeSent
 
 #Region "Properties"
 #End Region

@@ -1,4 +1,4 @@
-﻿Namespace My
+Namespace My
     Partial Friend Class MyApplication
 
         Private Delegate Sub SafeApplicationThreadException(ByVal sender As Object, ByVal e As Threading.ThreadExceptionEventArgs)

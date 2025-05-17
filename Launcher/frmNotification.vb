@@ -1,4 +1,4 @@
-﻿Public Class frmNotification
+Public Class frmNotification
 
     Dim HideTimer As Timer = New Timer
     Public Sub New(ByRef _mf As frmMain)

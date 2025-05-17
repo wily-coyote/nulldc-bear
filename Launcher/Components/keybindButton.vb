@@ -1,4 +1,4 @@
-﻿Imports System.Runtime.InteropServices
+Imports System.Runtime.InteropServices
 
 Public Class keybindButton
     Inherits Button

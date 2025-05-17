@@ -1,4 +1,4 @@
-﻿Imports SDL2.SDL
+Imports SDL2.SDL
 Imports System.IO
 
 Public Class frmSDLMappingTool
