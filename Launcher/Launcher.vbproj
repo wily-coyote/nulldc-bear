@@ -1,0 +1,651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<ProjectGuid>{1FEA19E8-593D-4D10-A766-27A9F14D0265}</ProjectGuid>
+		<OutputType>WinExe</OutputType>
+		<StartupObject>Launcher.My.MyApplication</StartupObject>
+		<RootNamespace>Launcher</RootNamespace>
+		<AssemblyName>NullDC.BEAR</AssemblyName>
+		<FileAlignment>512</FileAlignment>
+		<MyType>WindowsForms</MyType>
+		<TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<IsWebBootstrapper>false</IsWebBootstrapper>
+		<NuGetPackageImportStamp>
+		</NuGetPackageImportStamp>
+		<TargetFrameworkProfile />
+		<PublishUrl>publish\</PublishUrl>
+		<Install>true</Install>
+		<InstallFrom>Disk</InstallFrom>
+		<UpdateEnabled>false</UpdateEnabled>
+		<UpdateMode>Foreground</UpdateMode>
+		<UpdateInterval>7</UpdateInterval>
+		<UpdateIntervalUnits>Days</UpdateIntervalUnits>
+		<UpdatePeriodically>false</UpdatePeriodically>
+		<UpdateRequired>false</UpdateRequired>
+		<MapFileExtensions>true</MapFileExtensions>
+		<ApplicationRevision>2</ApplicationRevision>
+		<ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+		<UseApplicationTrust>false</UseApplicationTrust>
+		<PublishWizardCompleted>true</PublishWizardCompleted>
+		<BootstrapperEnabled>true</BootstrapperEnabled>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+		<PlatformTarget>x64</PlatformTarget>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\x64\Debug\</OutputPath>
+		<DefineConstants>DEBUG,TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+		<PlatformTarget>x64</PlatformTarget>
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\x64\Release\</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+		<PlatformTarget>x86</PlatformTarget>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\x86\Debug\</OutputPath>
+		<DefineConstants>DEBUG,TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+		<PlatformTarget>x86</PlatformTarget>
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\x86\Release\</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup>
+		<OptionExplicit>On</OptionExplicit>
+	</PropertyGroup>
+	<PropertyGroup>
+		<OptionCompare>Binary</OptionCompare>
+	</PropertyGroup>
+	<PropertyGroup>
+		<OptionStrict>Off</OptionStrict>
+	</PropertyGroup>
+	<PropertyGroup>
+		<OptionInfer>On</OptionInfer>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ManifestCertificateThumbprint>35825D4D95A0448824230DA1800B9081013C57FE</ManifestCertificateThumbprint>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ManifestKeyFile>Launcher_TemporaryKey.pfx</ManifestKeyFile>
+	</PropertyGroup>
+	<PropertyGroup>
+		<GenerateManifests>false</GenerateManifests>
+	</PropertyGroup>
+	<PropertyGroup>
+		<SignManifests>false</SignManifests>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ApplicationIcon>Resources\fan icon text.ico</ApplicationIcon>
+	</PropertyGroup>
+	<PropertyGroup>
+		<TargetZone>LocalIntranet</TargetZone>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+		<DebugSymbols>true</DebugSymbols>
+		<DefineDebug>true</DefineDebug>
+		<DefineTrace>true</DefineTrace>
+		<OutputPath>bin\x86\Debug\</OutputPath>
+		<DocumentationFile>
+		</DocumentationFile>
+		<NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+		<DebugType>pdbonly</DebugType>
+		<PlatformTarget>x86</PlatformTarget>
+		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+		<Prefer32Bit>true</Prefer32Bit>
+		<Optimize>false</Optimize>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+		<DefineTrace>true</DefineTrace>
+		<OutputPath>bin\x86\Release\</OutputPath>
+		<DocumentationFile>
+		</DocumentationFile>
+		<Optimize>false</Optimize>
+		<NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+		<DebugType>pdbonly</DebugType>
+		<PlatformTarget>x86</PlatformTarget>
+		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+		<Prefer32Bit>true</Prefer32Bit>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+		<DebugSymbols>true</DebugSymbols>
+		<DefineDebug>true</DefineDebug>
+		<DefineTrace>true</DefineTrace>
+		<OutputPath>bin\x64\Debug\</OutputPath>
+		<NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+		<DebugType>pdbonly</DebugType>
+		<PlatformTarget>x64</PlatformTarget>
+		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+		<Prefer32Bit>true</Prefer32Bit>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+		<DebugSymbols>true</DebugSymbols>
+		<DefineTrace>true</DefineTrace>
+		<OutputPath>bin\x64\Release\</OutputPath>
+		<NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+		<DebugType>pdbonly</DebugType>
+		<PlatformTarget>x64</PlatformTarget>
+		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+		<Prefer32Bit>true</Prefer32Bit>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="ILMerge" Version="3.0.29" />
+		<PackageReference Include="Downloader" Version="2.2.8" />
+		<PackageReference Include="NAudio" Version="1.10.0" />
+		<PackageReference Include="SevenZipSharp.Net45" Version="1.0.19" />
+		<Reference Include="SDL2-CS">
+			<HintPath>SDL2-CS.dll</HintPath>
+			<Private>True</Private>
+		</Reference>
+		<Reference Include="System" />
+		<Reference Include="System.Configuration" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Deployment" />
+		<Reference Include="System.Design" />
+		<Reference Include="System.Drawing" />
+		<Reference Include="System.IO.Compression" />
+		<Reference Include="System.IO.Compression.FileSystem" />
+		<Reference Include="System.Web.Extensions" />
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Xml" />
+		<Reference Include="System.Core" />
+		<Reference Include="System.Xml.Linq" />
+		<Reference Include="System.Data.DataSetExtensions" />
+		<Reference Include="System.Net.Http" />
+	</ItemGroup>
+	<ItemGroup>
+		<Import Include="Microsoft.VisualBasic" />
+		<Import Include="System" />
+		<Import Include="System.Collections" />
+		<Import Include="System.Collections.Generic" />
+		<Import Include="System.Data" />
+		<Import Include="System.Drawing" />
+		<Import Include="System.Diagnostics" />
+		<Import Include="System.IO.Compression" />
+		<Import Include="System.Windows.Forms" />
+		<Import Include="System.Linq" />
+		<Import Include="System.Xml.Linq" />
+		<Import Include="System.Threading.Tasks" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="ApplicationEvents.vb" />
+		<Compile Include="Components\ccDownload.Designer.vb">
+			<DependentUpon>ccDownload.vb</DependentUpon>
+		</Compile>
+		<Compile Include="Components\ccDownload.vb">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Include="frmBuddy.Designer.vb">
+			<DependentUpon>frmBuddy.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmBuddy.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="FrmCrash.Designer.vb">
+			<DependentUpon>FrmCrash.vb</DependentUpon>
+		</Compile>
+		<Compile Include="FrmCrash.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmDLCCreator.Designer.vb">
+			<DependentUpon>frmDLCCreator.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmDLCCreator.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmChallenge.Designer.vb">
+			<DependentUpon>frmChallenge.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmChallenge.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmChallengeGameSelect.Designer.vb">
+			<DependentUpon>frmChallengeGameSelect.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmChallengeGameSelect.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmChallengeSent.Designer.vb">
+			<DependentUpon>frmChallengeSent.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmChallengeSent.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmDelayHelp.Designer.vb">
+			<DependentUpon>frmDelayHelp.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmDelayHelp.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmDLC.Designer.vb">
+			<DependentUpon>frmDLC.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmDLC.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmDM.Designer.vb">
+			<DependentUpon>frmDM.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmDM.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmDownloading.Designer.vb">
+			<DependentUpon>frmDownloading.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmDownloading.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmHostPanel.Designer.vb">
+			<DependentUpon>frmHostPanel.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmHostPanel.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmKeyMapperSDL.Designer.vb">
+			<DependentUpon>frmKeyMapperSDL.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmKeyMapperSDL.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmLoLNerd.Designer.vb">
+			<DependentUpon>frmLoLNerd.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmLoLNerd.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmMain.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmMain.Designer.vb">
+			<DependentUpon>frmMain.vb</DependentUpon>
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmMappingString.Designer.vb">
+			<DependentUpon>frmMappingString.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmMappingString.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmMednafenOptions.Designer.vb">
+			<DependentUpon>frmMednafenOptions.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmMednafenOptions.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmMultiDiskCreator.Designer.vb">
+			<DependentUpon>frmMultiDiskCreator.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmMultiDiskCreator.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmMvC2Ratio.Designer.vb">
+			<DependentUpon>frmMvC2Ratio.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmMvC2Ratio.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmNewProfile.Designer.vb">
+			<DependentUpon>frmNewProfile.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmNewProfile.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmNotification.Designer.vb">
+			<DependentUpon>frmNotification.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmNotification.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmReplays.Designer.vb">
+			<DependentUpon>frmReplays.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmReplays.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmSDLMappingTool.Designer.vb">
+			<DependentUpon>frmSDLMappingTool.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmSDLMappingTool.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmSecret.Designer.vb">
+			<DependentUpon>frmSecret.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmSecret.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmSetup.Designer.vb">
+			<DependentUpon>frmSetup.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmSetup.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmSocial.Designer.vb">
+			<DependentUpon>frmSocial.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmSocial.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="frmWaitingForHost.Designer.vb">
+			<DependentUpon>frmWaitingForHost.vb</DependentUpon>
+		</Compile>
+		<Compile Include="frmWaitingForHost.vb">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Components\keybindButton.Designer.vb">
+			<DependentUpon>keybindButton.vb</DependentUpon>
+		</Compile>
+		<Compile Include="Components\keybindButton.vb">
+			<SubType>Component</SubType>
+		</Compile>
+		<Compile Include="MednafenLauncher.vb" />
+		<Compile Include="Components\MednafenSetting.Designer.vb">
+			<DependentUpon>MednafenSetting.vb</DependentUpon>
+		</Compile>
+		<Compile Include="Components\MednafenSetting.vb">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Include="mFlycastLauncher.vb" />
+		<Compile Include="Mupen64Launcher.vb" />
+		<Compile Include="Properties\AssemblyInfo.vb" />
+		<Compile Include="Properties\Application.Designer.vb">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Application.myapp</DependentUpon>
+			<DesignTime>True</DesignTime>
+		</Compile>
+		<Compile Include="Properties\Resources.Designer.vb">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Include="Properties\Settings.Designer.vb">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+		</Compile>
+		<Compile Include="NetworkHandling.vb" />
+		<Compile Include="NullDCLauncher.vb" />
+		<Compile Include="Rx.vb" />
+		<Compile Include="WindowsApi.vb" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Components\ccDownload.resx">
+			<DependentUpon>ccDownload.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmBuddy.resx">
+			<DependentUpon>frmBuddy.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmChallenge.resx">
+			<DependentUpon>frmChallenge.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmChallengeGameSelect.resx">
+			<DependentUpon>frmChallengeGameSelect.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmChallengeSent.resx">
+			<DependentUpon>frmChallengeSent.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="FrmCrash.resx">
+			<DependentUpon>FrmCrash.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmDelayHelp.resx">
+			<DependentUpon>frmDelayHelp.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmDLC.resx">
+			<DependentUpon>frmDLC.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmDLCCreator.resx">
+			<DependentUpon>frmDLCCreator.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmDM.resx">
+			<DependentUpon>frmDM.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmDownloading.resx">
+			<DependentUpon>frmDownloading.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmHostPanel.resx">
+			<DependentUpon>frmHostPanel.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmKeyMapperSDL.resx">
+			<DependentUpon>frmKeyMapperSDL.vb</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmLoLNerd.resx">
+			<DependentUpon>frmLoLNerd.vb</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmMain.resx">
+			<DependentUpon>frmMain.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmMappingString.resx">
+			<DependentUpon>frmMappingString.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmMednafenOptions.resx">
+			<DependentUpon>frmMednafenOptions.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmMultiDiskCreator.resx">
+			<DependentUpon>frmMultiDiskCreator.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmMvC2Ratio.resx">
+			<DependentUpon>frmMvC2Ratio.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmNewProfile.resx">
+			<DependentUpon>frmNewProfile.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmNotification.resx">
+			<DependentUpon>frmNotification.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmReplays.resx">
+			<DependentUpon>frmReplays.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmSDLMappingTool.resx">
+			<DependentUpon>frmSDLMappingTool.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmSecret.resx">
+			<DependentUpon>frmSecret.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmSetup.resx">
+			<DependentUpon>frmSetup.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmSocial.resx">
+			<DependentUpon>frmSocial.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="frmWaitingForHost.resx">
+			<DependentUpon>frmWaitingForHost.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Components\keybindButton.resx">
+			<DependentUpon>keybindButton.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Components\MednafenSetting.resx">
+			<DependentUpon>MednafenSetting.vb</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Properties\Resources.resx">
+			<Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.vb</LastGenOutput>
+			<CustomToolNamespace>My.Resources</CustomToolNamespace>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Properties\app.manifest" />
+		<None Include="Properties\Application.myapp">
+			<Generator>MyApplicationCodeGenerator</Generator>
+			<LastGenOutput>Application.Designer.vb</LastGenOutput>
+		</None>
+		<None Include="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<CustomToolNamespace>My</CustomToolNamespace>
+			<LastGenOutput>Settings.Designer.vb</LastGenOutput>
+		</None>
+		<None Include="App.config" />
+		<None Include="Resources\Controls.bear" />
+		<None Include="Resources\default_nullDC_dreamcast.cfg" />
+		<None Include="Resources\default_nullDC_naomi.cfg" />
+		<None Include="Resources\flycast.zip" />
+		<None Include="Resources\mednafen-server.zip" />
+		<None Include="Resources\mednafen.zip" />
+		<None Include="Resources\Mupen64Plus.zip" />
+		<None Include="Resources\SDL_Stable.zip" />
+		<None Include="Resources\Updates.zip" />
+		<None Include="Resources\vmu_data_port01.bin" />
+	</ItemGroup>
+	<ItemGroup>
+		<BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+			<Visible>False</Visible>
+			<ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+			<Install>true</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5 SP1</ProductName>
+			<Install>false</Install>
+		</BootstrapperPackage>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="packages.config" />
+		<None Include="Resources\be.zip" />
+		<None Include="Resources\bj.zip" />
+		<None Include="Resources\bu.zip" />
+		<None Include="Resources\Clippy.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\mvc2_r_list.jpg" />
+		<None Include="Resources\MvC2RatioList.bmp" />
+		<None Include="Resources\System Icons\NullDCBEAR-Title.png" />
+		<None Include="Resources\MessagePop.wav" />
+		<None Include="Resources\Controller Types\BEARJamma_Dreamcast.png" />
+		<None Include="Resources\Controller Types\BEARJammaNaomi.png" />
+		<None Include="Resources\Controller Types\gb_controller.png" />
+		<None Include="Resources\Controller Types\Dreamcast_ArcadeStick.png" />
+		<None Include="Resources\Controller Types\gba_controller.png" />
+		<None Include="Resources\Controller Types\gg_controller.png" />
+		<None Include="Resources\Controller Types\md_controller_3button.png" />
+		<None Include="Resources\Controller Types\md_controller_6button.png" />
+		<None Include="Resources\Controller Types\nes_controller.png" />
+		<None Include="Resources\Controller Types\nes_zapper.png" />
+		<None Include="Resources\Controller Types\ngp_controller.png" />
+		<None Include="Resources\Controller Types\psx_analogjoy.png" />
+		<None Include="Resources\Controller Types\psx_controller.png" />
+		<None Include="Resources\Controller Types\psx_dancepad.png" />
+		<None Include="Resources\Controller Types\psx_dualanalogcontroller.png" />
+		<None Include="Resources\Controller Types\psx_gcon.png" />
+		<None Include="Resources\Controller Types\psx_justifier.png" />
+		<None Include="Resources\Controller Types\psx_mouse.png" />
+		<None Include="Resources\Controller Types\psx_negcon.png" />
+		<None Include="Resources\Controller Types\snes_controller.png" />
+		<None Include="Resources\Controller Types\snes_superscope.png" />
+		<None Include="Resources\Controller Types\ss_controller.png" />
+		<None Include="Resources\Controller Types\ss_dualmission.png" />
+		<None Include="Resources\Controller Types\ss_gun.png" />
+		<None Include="Resources\Controller Types\ss_mission.png" />
+		<None Include="Resources\fan icon text.ico" />
+		<Content Include="Resources\Controller Types\n64_controller.png" />
+		<Content Include="Resources\Multitap_1.txt" />
+		<Content Include="Resources\Multitap_2.txt" />
+		<Content Include="Resources\Multitap_both.txt" />
+		<Content Include="Resources\Multitap_None.txt" />
+		<None Include="Resources\Rupee.png" />
+		<None Include="Resources\Secret_Moblin.png" />
+		<None Include="Resources\System Icons\icon_PSX.png" />
+		<None Include="Resources\System Icons\icon_NES.png" />
+		<None Include="Resources\System Icons\icon_GBC.png" />
+		<None Include="Resources\System Icons\icon_GBA.png" />
+		<None Include="Resources\System Icons\icon_SNES.png" />
+		<None Include="Resources\System Icons\icon_dreamcast.png" />
+		<None Include="Resources\MednafenOptimizations.txt" />
+		<None Include="Resources\Vs_2.png" />
+		<None Include="Resources\Vs.png" />
+		<None Include="Resources\DcClean.zip" />
+		<None Include="Resources\Deps.zip" />
+		<None Include="Resources\Controller Images\Controller-A.png" />
+		<None Include="Resources\Controller Images\Controller-B.png" />
+		<None Include="Resources\Controller Images\Controller-Back.png" />
+		<None Include="Resources\Controller Images\Controller-Background.png" />
+		<None Include="Resources\Controller Images\Controller-Dpad-Down.png" />
+		<None Include="Resources\Controller Images\Controller-Dpad-Left.png" />
+		<None Include="Resources\Controller Images\Controller-Dpad-Right.png" />
+		<None Include="Resources\Controller Images\Controller-Dpad-Up.png" />
+		<None Include="Resources\Controller Images\Controller-Guide.png" />
+		<None Include="Resources\Controller Images\Controller-LB.png" />
+		<None Include="Resources\Controller Images\Controller-LeftStick.png" />
+		<None Include="Resources\Controller Images\Controller-LeftX.png" />
+		<None Include="Resources\Controller Images\Controller-LeftY.png" />
+		<None Include="Resources\Controller Images\Controller-LT.png" />
+		<None Include="Resources\Controller Images\Controller-RB.png" />
+		<None Include="Resources\Controller Images\Controller-RightStick.png" />
+		<None Include="Resources\Controller Images\Controller-RightX.png" />
+		<None Include="Resources\Controller Images\Controller-RightY.png" />
+		<None Include="Resources\Controller Images\Controller-RT.png" />
+		<None Include="Resources\Controller Images\Controller-Start.png" />
+		<None Include="Resources\Controller Images\Controller-X.png" />
+		<None Include="Resources\Controller Images\Controller-Y.png" />
+		<Content Include="Resources\DreamcastGameOptimizations.txt" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\NewChallanger.wav" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\NullNaomiClean.zip" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\ConnectingNetplay.gif" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\NewNullDCBearIcon.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\NullDC-BEAR-UPDATER.exe" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Beta.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\NullDCBEAR-Title.png" />
+	</ItemGroup>
+	<ItemGroup />
+	<Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+			 Other similar extension points exist, see Microsoft.Common.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+	<Target Name="ILMerge" AfterTargets="Build">
+		<Exec Command="$(ILMergeConsolePath) ^
+			/out:$(OutputPath)$(AssemblyName).static.exe ^
+			$(OutputPath)$(AssemblyName).exe ^
+			$(OutputPath)Downloader.dll ^
+			$(OutputPath)NAudio.dll ^
+			$(OutputPath)SDL2-CS.dll ^
+			$(OutputPath)SevenZipSharp.dll"
+			/>
+		<Delete Condition=" '$(Configuration)' == 'Release' " Files="$(OutputPath)NullDC.BEAR.pdb"/>
+		<Delete Condition=" '$(Configuration)' == 'Release' " Files="$(OutputPath)NullDC.BEAR.static.pdb"/>
+		<Delete Condition=" '$(Configuration)' == 'Release' " Files="$(OutputPath)SevenZipSharp.pdb"/>
+		<Delete Condition=" '$(Configuration)' == 'Release' " Files="$(OutputPath)NAudio.xml"/>
+	</Target>
+</Project>
