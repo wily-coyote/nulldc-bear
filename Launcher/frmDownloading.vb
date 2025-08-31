@@ -2,46 +2,46 @@ Imports System.Net
 
 Public Class frmDownloading
 
-    Public Sub AddDownload(ByVal _URL As String, ByVal _filename As String, ByVal _extract As String)
-        _filename = MainformRef.NullDCPath & "\" & _filename
-        Dim ExistingDownload As Boolean = False
-        For Each _download As ccDownload In tlp_downloads.Controls
-            If _download.URL_String = _URL Then
-                ExistingDownload = True
-                Exit For
-            End If
-        Next
+	Public Sub AddDownload(ByVal _URL As String, ByVal _filename As String, ByVal _extract As String)
+		_filename = MainformRef.NullDCPath & "\" & _filename
+		Dim ExistingDownload As Boolean = False
+		For Each _download As ccDownload In tlp_downloads.Controls
+			If _download.URL_String = _URL Then
+				ExistingDownload = True
+				Exit For
+			End If
+		Next
 
-        If Not ExistingDownload Then
-            If tlp_downloads.Controls.Count >= 5 Then
-                MainformRef.NotificationForm.ShowMessage("Slow Down there, max of 5 downloads at once.")
-                Exit Sub
-            End If
+		If Not ExistingDownload Then
+			If tlp_downloads.Controls.Count >= 5 Then
+				MainformRef.NotificationForm.ShowMessage("Slow Down there, max of 5 downloads at once.")
+				Exit Sub
+			End If
 
-            tlp_downloads.RowStyles.Insert(0, New RowStyle(SizeType.AutoSize, 35.0F))
+			tlp_downloads.RowStyles.Insert(0, New RowStyle(SizeType.AutoSize, 35.0F))
 
-            Dim tmp As New ccDownload(_URL, WebUtility.UrlDecode(_filename), _extract)
-            tmp.Dock = DockStyle.Top
-            tlp_downloads.Controls.Add(tmp)
-            tmp.Init()
+			Dim tmp As New ccDownload(_URL, WebUtility.UrlDecode(_filename), _extract)
+			tmp.Dock = DockStyle.Top
+			tlp_downloads.Controls.Add(tmp)
+			tmp.Init()
 
-        End If
+		End If
 
-    End Sub
+	End Sub
 
-    Private Sub frmDownloading_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.Icon = My.Resources.fan_icon_text
+	Private Sub frmDownloading_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+		Me.Icon = My.Resources.fan_icon_text
 
-    End Sub
+	End Sub
 
-    Private Sub frmDownloading_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        If tlp_downloads.Controls.Count > 0 Then
-            If Not MainformRef.IsClosing Then
-                MsgBox("Cannot close while DLC are in the list.")
-            End If
-            e.Cancel = True
-        End If
+	Private Sub frmDownloading_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+		If tlp_downloads.Controls.Count > 0 Then
+			If Not MainformRef.IsClosing Then
+				MsgBox("Cannot close while DLC are in the list.")
+			End If
+			e.Cancel = True
+		End If
 
-    End Sub
+	End Sub
 
 End Class

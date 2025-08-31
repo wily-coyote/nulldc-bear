@@ -1,52 +1,52 @@
 Public Class frmSecret
-    Dim m_Rnd As New Random
+	Dim m_Rnd As New Random
 
-    Private Sub frmSecret_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.CenterToParent()
-        Me.Icon = My.Resources.fan_icon_text
+	Private Sub frmSecret_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+		Me.CenterToParent()
+		Me.Icon = My.Resources.fan_icon_text
 
-        Randomize()
-        btnColor.BackColor = RandomQBColor()
-        Randomize()
-        btnColor2.BackColor = RandomQBColor()
-        Randomize()
-        btnColor3.BackColor = RandomQBColor()
+		Randomize()
+		btnColor.BackColor = RandomQBColor()
+		Randomize()
+		btnColor2.BackColor = RandomQBColor()
+		Randomize()
+		btnColor3.BackColor = RandomQBColor()
 
-    End Sub
+	End Sub
 
-    Private Sub btnColor_Click(sender As Button, e As EventArgs) Handles btnColor.Click, btnColor2.Click, btnColor3.Click
-        Rx.SecretSettings = ColorTranslator.ToHtml(sender.BackColor)
-        MainformRef.ConfigFile.SaveFile()
-        Me.Close()
+	Private Sub btnColor_Click(sender As Button, e As EventArgs) Handles btnColor.Click, btnColor2.Click, btnColor3.Click
+		Rx.SecretSettings = ColorTranslator.ToHtml(sender.BackColor)
+		MainformRef.ConfigFile.SaveFile()
+		Me.Close()
 
-    End Sub
+	End Sub
 
-    Public Function RandomQBColor() As Color
+	Public Function RandomQBColor() As Color
 
-        Return Color.FromArgb(255, m_Rnd.Next(255), m_Rnd.Next(255), m_Rnd.Next(255))
+		Return Color.FromArgb(255, m_Rnd.Next(255), m_Rnd.Next(255), m_Rnd.Next(255))
 
-    End Function
+	End Function
 
-    Private Sub TableLayoutPanel1_Click(sender As Object, e As EventArgs) Handles TableLayoutPanel1.DoubleClick
-        ColorDialog1.ShowDialog()
-        Rx.SecretSettings = ColorTranslator.ToHtml(ColorDialog1.Color)
-        MainformRef.ConfigFile.SaveFile()
-        Me.Close()
+	Private Sub TableLayoutPanel1_Click(sender As Object, e As EventArgs) Handles TableLayoutPanel1.DoubleClick
+		ColorDialog1.ShowDialog()
+		Rx.SecretSettings = ColorTranslator.ToHtml(ColorDialog1.Color)
+		MainformRef.ConfigFile.SaveFile()
+		Me.Close()
 
-    End Sub
+	End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Me.Close()
-    End Sub
+	Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+		Me.Close()
+	End Sub
 
-    Private Sub TableLayoutPanel2_Click(sender As Object, e As EventArgs) Handles TableLayoutPanel2.Click
-        Randomize()
-        btnColor.BackColor = RandomQBColor()
-        Randomize()
-        btnColor2.BackColor = RandomQBColor()
-        Randomize()
-        btnColor3.BackColor = RandomQBColor()
+	Private Sub TableLayoutPanel2_Click(sender As Object, e As EventArgs) Handles TableLayoutPanel2.Click
+		Randomize()
+		btnColor.BackColor = RandomQBColor()
+		Randomize()
+		btnColor2.BackColor = RandomQBColor()
+		Randomize()
+		btnColor3.BackColor = RandomQBColor()
 
-    End Sub
+	End Sub
 
 End Class
