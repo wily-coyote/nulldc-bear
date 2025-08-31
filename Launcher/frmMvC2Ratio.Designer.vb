@@ -1,6 +1,6 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmMvC2Ratio
-    Inherits System.Windows.Forms.Form
+    Inherits NormalForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -27,7 +27,7 @@ Partial Class frmMvC2Ratio
         'frmMvC2Ratio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(108, Byte), Integer), CType(CType(238, Byte), Integer))
         Me.BackgroundImage = Global.Launcher.My.Resources.Resources.mvc2_r_list
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom

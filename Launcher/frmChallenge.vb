@@ -142,7 +142,7 @@ Public Class frmChallenge
             End If
 
             Dim GameName As String = MainformRef.GamesList(TempGameName)(0)
-            lbChallengeText.Text = _Challenger.name & " Has challenged you to " & vbCrLf & GameName
+            lbChallengeText.Text = _Challenger.name & " has challenged you to " & vbCrLf & GameName
         Else
             _Challenger = Nothing
         End If

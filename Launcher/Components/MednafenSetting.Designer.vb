@@ -50,9 +50,8 @@ Partial Class MednafenSetting
         '
         Me.Setting_Label.AutoSize = True
         Me.Setting_Label.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Setting_Label.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Setting_Label.Location = New System.Drawing.Point(3, 0)
-        Me.Setting_Label.Name = "Setting_Label"
+		Me.Setting_Label.Location = New System.Drawing.Point(3, 0)
+		Me.Setting_Label.Name = "Setting_Label"
         Me.Setting_Label.Size = New System.Drawing.Size(47, 16)
         Me.Setting_Label.TabIndex = 0
         Me.Setting_Label.Text = "Label"
@@ -60,15 +59,16 @@ Partial Class MednafenSetting
         'MednafenSetting
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.DarkGray
         Me.Controls.Add(Me.SettingContainer)
         Me.Margin = New System.Windows.Forms.Padding(0)
-        Me.Name = "MednafenSetting"
-        Me.Size = New System.Drawing.Size(106, 16)
-        Me.SettingContainer.ResumeLayout(False)
+		Me.Name = "MednafenSetting"
+		Me.Font = System.Drawing.SystemFonts.MessageBoxFont
+		Me.Size = New System.Drawing.Size(106, 16)
+		Me.SettingContainer.ResumeLayout(False)
         Me.SettingContainer.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()

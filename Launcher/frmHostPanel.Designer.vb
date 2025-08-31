@@ -1,6 +1,6 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmHostPanel
-    Inherits System.Windows.Forms.Form
+    Inherits NormalForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -45,11 +45,13 @@ Partial Class frmHostPanel
         '
         'btnStartHosting
         '
+        Me.btnStartHosting.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnStartHosting.AutoSize = True
         Me.btnStartHosting.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.btnStartHosting.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnStartHosting.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnStartHosting.Font = NormalForm.BigCaptionFont
         Me.btnStartHosting.ForeColor = System.Drawing.Color.FromArgb(CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer))
-        Me.btnStartHosting.Location = New System.Drawing.Point(172, 314)
+        Me.btnStartHosting.Location = New System.Drawing.Point(172, 309)
         Me.btnStartHosting.Name = "btnStartHosting"
         Me.btnStartHosting.Size = New System.Drawing.Size(107, 48)
         Me.btnStartHosting.TabIndex = 3
@@ -66,7 +68,7 @@ Partial Class frmHostPanel
         Me.cbDelay.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7"})
         Me.cbDelay.Location = New System.Drawing.Point(72, 3)
         Me.cbDelay.Name = "cbDelay"
-        Me.cbDelay.Size = New System.Drawing.Size(102, 21)
+        Me.cbDelay.Size = New System.Drawing.Size(102, 26)
         Me.cbDelay.TabIndex = 4
         '
         'Label1
@@ -74,7 +76,6 @@ Partial Class frmHostPanel
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(3, 0)
         Me.Label1.Name = "Label1"
@@ -85,6 +86,8 @@ Partial Class frmHostPanel
         '
         'PictureBox1
         '
+        Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox1.Location = New System.Drawing.Point(75, 1)
@@ -95,6 +98,8 @@ Partial Class frmHostPanel
         '
         'TableLayoutPanel1
         '
+        Me.TableLayoutPanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TableLayoutPanel1.BackColor = System.Drawing.Color.Transparent
         Me.TableLayoutPanel1.ColumnCount = 1
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -112,7 +117,6 @@ Partial Class frmHostPanel
         '
         Me.lbInfo.AutoSize = True
         Me.lbInfo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lbInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbInfo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer))
         Me.lbInfo.Location = New System.Drawing.Point(3, 0)
         Me.lbInfo.Name = "lbInfo"
@@ -125,7 +129,6 @@ Partial Class frmHostPanel
         '
         Me.lbPing.AutoSize = True
         Me.lbPing.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lbPing.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbPing.ForeColor = System.Drawing.Color.FromArgb(CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer))
         Me.lbPing.Location = New System.Drawing.Point(3, 17)
         Me.lbPing.Name = "lbPing"
@@ -135,13 +138,16 @@ Partial Class frmHostPanel
         '
         'btnExit
         '
+        Me.btnExit.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnExit.AutoSize = True
         Me.btnExit.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnExit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExit.Font = NormalForm.BigCaptionFont
         Me.btnExit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer))
-        Me.btnExit.Location = New System.Drawing.Point(190, 402)
+        Me.btnExit.Location = New System.Drawing.Point(188, 391)
         Me.btnExit.Name = "btnExit"
-        Me.btnExit.Size = New System.Drawing.Size(75, 31)
+        Me.btnExit.Size = New System.Drawing.Size(75, 46)
         Me.btnExit.TabIndex = 8
         Me.btnExit.Text = "Exit"
         Me.btnExit.UseVisualStyleBackColor = False
@@ -151,7 +157,6 @@ Partial Class frmHostPanel
         Me.btnSuggestDelay.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.btnSuggestDelay.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnSuggestDelay.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnSuggestDelay.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSuggestDelay.ForeColor = System.Drawing.Color.FromArgb(CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer))
         Me.btnSuggestDelay.Location = New System.Drawing.Point(72, 33)
         Me.btnSuggestDelay.Name = "btnSuggestDelay"
@@ -165,7 +170,6 @@ Partial Class frmHostPanel
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.Button1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer))
         Me.Button1.Location = New System.Drawing.Point(180, 3)
         Me.Button1.Name = "Button1"
@@ -183,11 +187,12 @@ Partial Class frmHostPanel
         Me.cbRegion.Items.AddRange(New Object() {"JPN", "USA", "EUR"})
         Me.cbRegion.Location = New System.Drawing.Point(224, 3)
         Me.cbRegion.Name = "cbRegion"
-        Me.cbRegion.Size = New System.Drawing.Size(49, 21)
+        Me.cbRegion.Size = New System.Drawing.Size(49, 26)
         Me.cbRegion.TabIndex = 25
         '
         'tb_nulldc
         '
+        Me.tb_nulldc.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tb_nulldc.BackColor = System.Drawing.Color.Transparent
         Me.tb_nulldc.ColumnCount = 4
         Me.tb_nulldc.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69.0!))
@@ -199,7 +204,7 @@ Partial Class frmHostPanel
         Me.tb_nulldc.Controls.Add(Me.cbRegion, 3, 0)
         Me.tb_nulldc.Controls.Add(Me.Label1, 0, 0)
         Me.tb_nulldc.Controls.Add(Me.Button1, 2, 0)
-        Me.tb_nulldc.Location = New System.Drawing.Point(82, 244)
+        Me.tb_nulldc.Location = New System.Drawing.Point(86, 244)
         Me.tb_nulldc.Name = "tb_nulldc"
         Me.tb_nulldc.RowCount = 2
         Me.tb_nulldc.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.54237!))
@@ -228,9 +233,9 @@ Partial Class frmHostPanel
         Me.cb_Serverlist.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cb_Serverlist.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cb_Serverlist.FormattingEnabled = True
-        Me.cb_Serverlist.Location = New System.Drawing.Point(3, 22)
+        Me.cb_Serverlist.Location = New System.Drawing.Point(3, 23)
         Me.cb_Serverlist.Name = "cb_Serverlist"
-        Me.cb_Serverlist.Size = New System.Drawing.Size(194, 21)
+        Me.cb_Serverlist.Size = New System.Drawing.Size(194, 26)
         Me.cb_Serverlist.TabIndex = 0
         '
         'Label2
@@ -238,19 +243,18 @@ Partial Class frmHostPanel
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(5, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(3, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(194, 19)
+        Me.Label2.Size = New System.Drawing.Size(194, 20)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "Server"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'frmHostPanel
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.DimGray
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(450, 450)
@@ -260,10 +264,12 @@ Partial Class frmHostPanel
         Me.Controls.Add(Me.btnStartHosting)
         Me.Controls.Add(Me.tb_mednafen)
         Me.Controls.Add(Me.PictureBox1)
+        
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximumSize = New System.Drawing.Size(450, 450)
         Me.MinimumSize = New System.Drawing.Size(450, 450)
         Me.Name = "frmHostPanel"
+        Me.Padding = New System.Windows.Forms.Padding(10)
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Host"
         Me.TransparencyKey = System.Drawing.Color.DimGray
@@ -275,6 +281,7 @@ Partial Class frmHostPanel
         Me.tb_mednafen.ResumeLayout(False)
         Me.tb_mednafen.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnStartHosting As Button

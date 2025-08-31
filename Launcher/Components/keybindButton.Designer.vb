@@ -28,6 +28,7 @@ Partial Class keybindButton
         '
         Me.Name = "keybindButton"
         Me.Size = New System.Drawing.Size(377, 116)
+	Me.Font = NormalForm.BigCaptionFont
 
         Me.ResumeLayout(False)
 

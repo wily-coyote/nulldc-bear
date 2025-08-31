@@ -1,9 +1,9 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmDM
-    Inherits System.Windows.Forms.Form
+	Inherits NormalForm
 
-    'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+	'Form overrides dispose to clean up the component list.
+	<System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -103,7 +103,6 @@ Partial Class frmDM
         'InputBox
         '
         Me.InputBox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.InputBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.InputBox.Location = New System.Drawing.Point(0, 0)
         Me.InputBox.Margin = New System.Windows.Forms.Padding(0)
         Me.InputBox.MaxLength = 256
@@ -154,7 +153,7 @@ Partial Class frmDM
         'frmDM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(462, 363)
         Me.Controls.Add(Me.tlpContainer)
         Me.Controls.Add(Me.MenuStrip1)
@@ -162,7 +161,8 @@ Partial Class frmDM
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "frmDM"
         Me.Text = " <Name Of Player>"
-        Me.tlpContainer.ResumeLayout(False)
+
+		Me.tlpContainer.ResumeLayout(False)
         Me.tlpContainer.PerformLayout()
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.FlowLayoutPanel1.PerformLayout()

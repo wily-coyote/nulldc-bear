@@ -116,13 +116,14 @@ Partial Class ccDownload
         'ccDownload
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.AutoSize = True
         Me.Controls.Add(Me.TableLayoutPanel1)
-        Me.MaximumSize = New System.Drawing.Size(0, 50)
-        Me.MinimumSize = New System.Drawing.Size(250, 50)
+        Me.MaximumSize = New System.Drawing.Size(0, 60)
+        Me.MinimumSize = New System.Drawing.Size(250, 60)
         Me.Name = "ccDownload"
-        Me.Size = New System.Drawing.Size(319, 50)
+	
+        Me.Size = New System.Drawing.Size(320, 60)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)

@@ -17,8 +17,11 @@ Clone, run a NuGet restore, then build.
 git clone https://github.com/wily-coyote/nullDC-BEAR-mod
 cd nullDC-BEAR-mod
 msbuild -t:Restore NullDC-BEAR.sln
-msbuild -p:Platform=x64 -p:Configuration="Release" NullDC-BEAR.sln
+msbuild -p:Platform=x86 -p:Configuration="Release" NullDC-BEAR.sln
 ```
+
+It is required to compile the x86 version as both the NullDC emulator and
+NullDC-BEAR uses the same SDL2 library; the emulator is 32-bit.
 
 You can then replace an existing installation of NullDC BEAR, or create a new
 one by running the executable. If the statically linked version is being used,

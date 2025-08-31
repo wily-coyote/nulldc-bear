@@ -489,9 +489,12 @@ Public Class frmChallengeGameSelect
 
     End Sub
 
-    Private Sub cb_nokey_CheckedChanged(sender As CheckBox, e As EventArgs) Handles cb_nokey.CheckedChanged
-        MainformRef.ConfigFile.NoKey = sender.Checked
+	Private Sub cb_nokey_CheckedChanged(sender As CheckBox, e As EventArgs) Handles cb_nokey.CheckedChanged
+		MainformRef.ConfigFile.NoKey = sender.Checked
 
-    End Sub
+	End Sub
 
+	Private Sub cb_nokey_CheckedChanged(sender As Object, e As EventArgs) Handles cb_nokey.CheckedChanged
+
+	End Sub
 End Class

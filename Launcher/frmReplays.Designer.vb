@@ -1,6 +1,6 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmReplays
-    Inherits System.Windows.Forms.Form
+    Inherits NormalForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -45,23 +45,26 @@ Partial Class frmReplays
         '
         'btnOpen
         '
+        Me.btnOpen.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnOpen.AutoSize = True
         Me.btnOpen.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnOpen.Location = New System.Drawing.Point(384, 264)
+        Me.btnOpen.Location = New System.Drawing.Point(382, 266)
         Me.btnOpen.Name = "btnOpen"
-        Me.btnOpen.Size = New System.Drawing.Size(75, 23)
+        Me.btnOpen.Size = New System.Drawing.Size(75, 28)
         Me.btnOpen.TabIndex = 0
         Me.btnOpen.Text = "Open"
         Me.btnOpen.UseVisualStyleBackColor = False
         '
         'lvReplays
         '
+        Me.lvReplays.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lvReplays.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.lvReplays.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lvReplays.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5})
         Me.TableLayoutPanel1.SetColumnSpan(Me.lvReplays, 4)
-        Me.lvReplays.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
         Me.lvReplays.FullRowSelect = True
         Me.lvReplays.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
         Me.lvReplays.HideSelection = False
@@ -102,9 +105,10 @@ Partial Class frmReplays
         '
         'btnOn
         '
+        Me.btnOn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnOn.BackColor = System.Drawing.Color.White
         Me.btnOn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnOn.Location = New System.Drawing.Point(12, 286)
+        Me.btnOn.Location = New System.Drawing.Point(12, 287)
         Me.btnOn.Name = "btnOn"
         Me.btnOn.Size = New System.Drawing.Size(75, 64)
         Me.btnOn.TabIndex = 2
@@ -113,44 +117,49 @@ Partial Class frmReplays
         '
         'btnFolder
         '
+        Me.btnFolder.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnFolder.AutoSize = True
         Me.btnFolder.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.btnFolder.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnFolder.Location = New System.Drawing.Point(465, 264)
+        Me.btnFolder.Location = New System.Drawing.Point(463, 266)
         Me.btnFolder.Name = "btnFolder"
-        Me.btnFolder.Size = New System.Drawing.Size(101, 23)
+        Me.btnFolder.Size = New System.Drawing.Size(103, 28)
         Me.btnFolder.TabIndex = 3
         Me.btnFolder.Text = "Replays Folder"
         Me.btnFolder.UseVisualStyleBackColor = False
         '
         'Label1
         '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 272)
+        Me.Label1.Location = New System.Drawing.Point(12, 266)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(56, 13)
+        Me.Label1.Size = New System.Drawing.Size(65, 18)
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "Recording"
         '
         'btnPlay
         '
+        Me.btnPlay.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnPlay.AutoSize = True
         Me.btnPlay.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnPlay.Location = New System.Drawing.Point(572, 264)
+        Me.btnPlay.Location = New System.Drawing.Point(570, 266)
         Me.btnPlay.Name = "btnPlay"
-        Me.btnPlay.Size = New System.Drawing.Size(75, 23)
+        Me.btnPlay.Size = New System.Drawing.Size(75, 28)
         Me.btnPlay.TabIndex = 6
         Me.btnPlay.Text = "Play"
         Me.btnPlay.UseVisualStyleBackColor = False
         '
         'btnClose
         '
+        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClose.AutoSize = True
         Me.btnClose.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnClose.Location = New System.Drawing.Point(573, 327)
+        Me.btnClose.Location = New System.Drawing.Point(570, 323)
         Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(75, 23)
+        Me.btnClose.Size = New System.Drawing.Size(75, 28)
         Me.btnClose.TabIndex = 7
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = False
@@ -181,7 +190,6 @@ Partial Class frmReplays
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label5.Location = New System.Drawing.Point(474, 0)
         Me.Label5.Margin = New System.Windows.Forms.Padding(0)
         Me.Label5.Name = "Label5"
@@ -196,7 +204,6 @@ Partial Class frmReplays
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label4.Location = New System.Drawing.Point(316, 0)
         Me.Label4.Margin = New System.Windows.Forms.Padding(0)
         Me.Label4.Name = "Label4"
@@ -211,7 +218,6 @@ Partial Class frmReplays
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label3.Location = New System.Drawing.Point(158, 0)
         Me.Label3.Margin = New System.Windows.Forms.Padding(0)
         Me.Label3.Name = "Label3"
@@ -226,7 +232,6 @@ Partial Class frmReplays
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.Label2.Location = New System.Drawing.Point(0, 0)
         Me.Label2.Margin = New System.Windows.Forms.Padding(0)
         Me.Label2.Name = "Label2"
@@ -238,22 +243,23 @@ Partial Class frmReplays
         '
         'btnDelete
         '
+        Me.btnDelete.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnDelete.AutoSize = True
         Me.btnDelete.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnDelete.Location = New System.Drawing.Point(291, 264)
+        Me.btnDelete.Location = New System.Drawing.Point(289, 266)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(87, 23)
+        Me.btnDelete.Size = New System.Drawing.Size(87, 28)
         Me.btnDelete.TabIndex = 9
         Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = False
         '
         'frmReplays
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(657, 359)
+        Me.ClientSize = New System.Drawing.Size(657, 363)
         Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.btnClose)
@@ -262,6 +268,7 @@ Partial Class frmReplays
         Me.Controls.Add(Me.btnFolder)
         Me.Controls.Add(Me.btnOn)
         Me.Controls.Add(Me.btnOpen)
+        
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "frmReplays"
         Me.Text = "BEARPlay Replays 2.0"
