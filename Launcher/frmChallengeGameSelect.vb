@@ -27,12 +27,12 @@ Public Class frmChallengeGameSelect
 
 		Dim GameToLaunch = SelectedGame(0)
 		If GameToLaunch = "" Then
-			MainformRef.NotificationForm.ShowMessage("No Game Selected")
+			MainformRef.NotificationForm.ShowMessage("Please select a game.")
 			Exit Sub
 		End If
 
 		If _Challenger IsNot Nothing And MainformRef.GamesList(GameToLaunch)(2) = "n64" Then
-			MainformRef.NotificationForm.ShowMessage("N64 Netplay coming soon...")
+			MainformRef.NotificationForm.ShowMessage("N64 netplay coming soon...")
 			Exit Sub
 
 		End If

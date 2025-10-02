@@ -528,7 +528,6 @@
 		</BootstrapperPackage>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="packages.config" />
 		<None Include="Resources\be.zip" />
 		<None Include="Resources\bj.zip" />
 		<None Include="Resources\bu.zip" />

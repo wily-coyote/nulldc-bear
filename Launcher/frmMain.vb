@@ -95,7 +95,7 @@ Public Class frmMain
 			End If
 
 		Catch ex As Exception
-			MsgBox("Couldn't change SDL version make sure nullDC is closed. Error: " & vbNewLine & ex.Message)
+			MsgBox("Couldn't change the SDL version." & vbNewLine & "Make sure that nullDC is not running." & vbNewLine & "Error: " & vbNewLine & ex.Message)
 			End
 
 		End Try
@@ -115,7 +115,7 @@ Public Class frmMain
 		' Unpack The Basic Shit
 
 		If Not File.Exists(NullDCPath & "\nullDC_Win32_Release-NoTrace.exe") Then
-			Dim result As DialogResult = MessageBox.Show("NullDC was not found in this folder, INSTALL NULLDC INTO THIS FOLDER?", "NullDC Install", MessageBoxButtons.YesNo)
+			Dim result As DialogResult = MessageBox.Show("NullDC was not found in this folder." & vbNewLine & "Install NullDC into this folder?", "NullDC Install", MessageBoxButtons.YesNo)
 			If result = DialogResult.Yes Then
 				Dim result2 As DialogResult = MessageBox.Show("This will create a bunch of files in the same folder as NullDC BEAR.exe, OK?", "NullDC Extraction", MessageBoxButtons.YesNo)
 				If result2 = DialogResult.Yes Then
@@ -195,14 +195,13 @@ Public Class frmMain
 	End Sub
 
 	Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
 		If NullDCPath.ToLower.Contains("system32") Then
-			MsgBox("Do not start me from the search bar in windows 10, kthx." & vbNewLine & "Or any external program, just make a shortcut for BEAR somewhere")
+			MsgBox("Please don't start me from the Windows search bar, kthx." & vbNewLine & "Or any external program, just make a shortcut for BEAR somewhere.")
 			End
 		End If
 
 		If NullDCPath.ToLower.Contains("download") Then
-			MsgBox("Please take me out of the download folder, make a new folder for me somewhere.")
+			MsgBox("Please take me out of the Downloads folder.")
 			End
 		End If
 
@@ -267,8 +266,7 @@ UpdateTry:
 				" to NullDC.BEAR.exe " &
 				vbNewLine &
 				"or you might lose settings, or keep updating every time you start it and other weird shit.",
-				vbExclamation + vbOKOnly
-			)
+				vbExclamation + vbOKOnly)
 						Process.Start(file.Replace(tempFileName, ""))
 						End
 					End If
@@ -358,9 +356,6 @@ UpdateTry:
 		Catch ex As Exception
 			MsgBox("Error Loading Theme: " & ex.Message)
 		End Try
-
-
-
 	End Sub
 
 	Public Sub ReloadTheme()
@@ -774,6 +769,21 @@ UpdateTry:
 		GameSelectForm.cb_Serverlist.DataSource = GameSelectServerList
 		HostingForm.cb_Serverlist.DataSource = HostPanelServerList
 	End Sub
+	
+	Public Sub AddGamesForSystem(ByVal Path As String, ByVal Extension As String, ByVal Prefix As String)
+		If Not Directory.Exists(NullDCPath & Path) Then Directory.CreateDirectory(NullDCPath & Path)
+		Dim Files As String() = Directory.GetFiles(NullDCPath & Path, "*." & Extension, SearchOption.AllDirectories)
+		For Each File In Files
+			Dim SplitPath As String() = File.Split("\")
+			Dim BaseName As String = SplitPath(UBound(SplitPath))
+			Dim GameName As String = BaseName.Trim.Replace("." & Extension, "").Replace(",", ".").Replace("_", " ")
+			Dim RomName As String = BaseName.Replace(",", ".")
+			Dim RomPath As String = File.Replace(NullDCPath, "")
+			If Not GamesList.ContainsKey(Prefix & "-" & RomName) Then
+				GamesList.Add(Prefix & "-" & RomName, {GameName, RomPath, Prefix.ToLower(), ""})
+			End If
+		Next
+	End Sub
 
 	Public Sub GetGamesList(Optional ByVal _system As String = "all")
 		GamesList.Clear()
@@ -782,19 +792,7 @@ UpdateTry:
 		Dim Files As String()
 
 		If _system = "all" Or _system = "na" Then
-			If Not Directory.Exists(NullDCPath & "\roms") Then Directory.CreateDirectory(NullDCPath & "\roms")
-			Files = Directory.GetFiles(NullDCPath & "\roms", "*.lst", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 2).Trim.Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("NA-" & RomName) Then
-					GamesList.Add("NA-" & RomName, {GameName, RomPath, "na", ""})
-				End If
-			Next
+			AddGamesForSystem("\roms", "lst", "NA")
 		End If
 
 		If _system = "all" Or _system = "dc" Then
@@ -808,7 +806,6 @@ UpdateTry:
 
 			Array.Resize(Files, Files.Count + GDIFiles.Count)
 			GDIFiles.CopyTo(Files, InsertAtIndex)
-
 
 			For Each _file In Files
 				If _file Is Nothing Then Continue For
@@ -830,7 +827,6 @@ UpdateTry:
 					Dim NameAsByte = Encoding.ASCII.GetBytes(GameName_Split(GameName_Split.Count - 1).ToLower)
 					NameAsByte.CopyTo(BytesToHash, 0)
 				End If
-
 
 				Dim bytes() As Byte = hasher.ComputeHash(BytesToHash)
 
@@ -871,460 +867,75 @@ UpdateTry:
 		End If
 
 		If _system = "all" Or _system = "ss" Then
-			If Not Directory.Exists(NullDCPath & "\mednafen\roms\ss") Then Directory.CreateDirectory(NullDCPath & "\mednafen\roms\ss")
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\ss", "*.cue", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".cue", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("SS-" & RomName) Then
-					GamesList.Add("SS-" & RomName, {GameName, RomPath, "ss", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\ss", "*.m3u", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".m3u", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("SS-" & RomName) Then
-					GamesList.Add("SS-" & RomName, {GameName, RomPath, "ss", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\ss", "*.ccd", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".ccd", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("SS-" & RomName) Then
-					GamesList.Add("SS-" & RomName, {GameName, RomPath, "ss", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\ss", "*.img", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".img", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("SS-" & RomName) Then
-					GamesList.Add("SS-" & RomName, {GameName, RomPath, "ss", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\ss", "*.sub", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".sub", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("SS-" & RomName) Then
-					GamesList.Add("SS-" & RomName, {GameName, RomPath, "ss", ""})
-				End If
-			Next
-
+			AddGamesForSystem("\mednafen\roms\ss", "cue", "SS")
+			AddGamesForSystem("\mednafen\roms\ss", "m3u", "SS")
+			AddGamesForSystem("\mednafen\roms\ss", "ccd", "SS")
 		End If
 
 		If _system = "all" Or _system = "sg" Then
-			If Not Directory.Exists(NullDCPath & "\mednafen\roms\sg") Then Directory.CreateDirectory(NullDCPath & "\mednafen\roms\sg")
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\sg", "*.zip", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".zip", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("SG-" & RomName) Then
-					GamesList.Add("SG-" & RomName, {GameName, RomPath, "sg", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\sg", "*.bin", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".bin", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("SG-" & RomName) Then
-					GamesList.Add("SG-" & RomName, {GameName, RomPath, "sg", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\sg", "*.md", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".md", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("SG-" & RomName) Then
-					GamesList.Add("SG-" & RomName, {GameName, RomPath, "sg", ""})
-				End If
-			Next
-
+			AddGamesForSystem("\mednafen\roms\sg", "zip", "SG")
+			AddGamesForSystem("\mednafen\roms\sg", "bin", "SG")
+			AddGamesForSystem("\mednafen\roms\sg", "md", "SG")
 		End If
 
 		If _system = "all" Or _system = "sms" Then
-			If Not Directory.Exists(NullDCPath & "\mednafen\roms\sms") Then Directory.CreateDirectory(NullDCPath & "\mednafen\roms\sms")
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\sms", "*.zip", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".zip", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("SMS-" & RomName) Then
-					GamesList.Add("SMS-" & RomName, {GameName, RomPath, "sms", ""})
-				End If
-			Next
-
+			AddGamesForSystem("\mednafen\roms\sms", "zip", "SMS")
 		End If
 
 		If _system = "all" Or _system = "psx" Then
-			If Not Directory.Exists(NullDCPath & "\mednafen\roms\psx") Then Directory.CreateDirectory(NullDCPath & "\mednafen\roms\psx")
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\psx", "*.cue", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".cue", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("PSX-" & RomName) Then
-					GamesList.Add("PSX-" & RomName, {GameName, RomPath, "psx", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\psx", "*.m3u", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".m3u", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("PSX-" & RomName) Then
-					GamesList.Add("PSX-" & RomName, {GameName, RomPath, "psx", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\psx", "*.ccd", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".ccd", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("PSX-" & RomName) Then
-					GamesList.Add("PSX-" & RomName, {GameName, RomPath, "psx", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\psx", "*.img", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".img", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("PSX-" & RomName) Then
-					GamesList.Add("PSX-" & RomName, {GameName, RomPath, "psx", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\psx", "*.sub", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".sub", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("PSX-" & RomName) Then
-					GamesList.Add("PSX-" & RomName, {GameName, RomPath, "psx", ""})
-				End If
-			Next
+			AddGamesForSystem("\mednafen\roms\psx", "cue", "PSX")
+			AddGamesForSystem("\mednafen\roms\psx", "m3u", "PSX")
+			AddGamesForSystem("\mednafen\roms\psx", "ccd", "PSX")
 		End If
 
 		If _system = "all" Or _system = "pce" Then
-			If Not Directory.Exists(NullDCPath & "\mednafen\roms\pce") Then Directory.CreateDirectory(NullDCPath & "\mednafen\roms\pce")
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\pce", "*.cue", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".cue", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("PCE-" & RomName) Then
-					GamesList.Add("PCE-" & RomName, {GameName, RomPath, "pce", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\pce", "*.pce", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".pce", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("PCE-" & RomName) Then
-					GamesList.Add("PCE-" & RomName, {GameName, RomPath, "pce", ""})
-				End If
-			Next
-
+			AddGamesForSystem("\mednafen\roms\pce", "cue", "PCE")
+			AddGamesForSystem("\mednafen\roms\pce", "pce", "PCE")
 		End If
 
 		If _system = "all" Or _system = "nes" Then
-			If Not Directory.Exists(NullDCPath & "\mednafen\roms\nes") Then Directory.CreateDirectory(NullDCPath & "\mednafen\roms\nes")
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\nes", "*.zip", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".zip", "").Replace(",", ".").Replace(".NES", "").Replace("# NES", "").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("NES-" & RomName) Then
-					GamesList.Add("NES-" & RomName, {GameName, RomPath, "nes", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\nes", "*.nes", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".nes", "").Replace(",", ".").Replace(".NES", "").Replace("# NES", "").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("NES-" & RomName) Then
-					GamesList.Add("NES-" & RomName, {GameName, RomPath, "nes", ""})
-				End If
-			Next
-
+			AddGamesForSystem("\mednafen\roms\nes", "zip", "NES")
+			AddGamesForSystem("\mednafen\roms\nes", "nes", "NES")
 		End If
 
 		If _system = "all" Or _system = "snes" Then
-			If Not Directory.Exists(NullDCPath & "\mednafen\roms\snes") Then Directory.CreateDirectory(NullDCPath & "\mednafen\roms\snes")
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\snes", "*.zip", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".zip", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("SNES-" & RomName) Then
-					GamesList.Add("SNES-" & RomName, {GameName, RomPath, "snes", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\snes", "*.sfc", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".sfc", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("SNES-" & RomName) Then
-					GamesList.Add("SNES-" & RomName, {GameName, RomPath, "snes", ""})
-				End If
-			Next
-
+			AddGamesForSystem("\mednafen\roms\snes", "zip", "SNES")
+			AddGamesForSystem("\mednafen\roms\snes", "sfc", "SNES")
+			AddGamesForSystem("\mednafen\roms\snes", "smc", "SNES")
 		End If
 
 		If _system = "all" Or _system = "fds" Then
-			If Not Directory.Exists(NullDCPath & "\mednafen\roms\fds") Then Directory.CreateDirectory(NullDCPath & "\mednafen\roms\fds")
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\fds", "*.zip", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".zip", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("FDS-" & RomName) Then
-					GamesList.Add("FDS-" & RomName, {GameName, RomPath, "fds", ""})
-				End If
-			Next
-
+			AddGamesForSystem("\mednafen\roms\fds", "zip", "FDS")
 		End If
 
 		If _system = "all" Or _system = "ngp" Then
-			If Not Directory.Exists(NullDCPath & "\mednafen\roms\ngp") Then Directory.CreateDirectory(NullDCPath & "\mednafen\roms\ngp")
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\ngp", "*.zip", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".zip", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("NGP-" & RomName) Then
-					GamesList.Add("NGP-" & RomName, {GameName, RomPath, "ngp", ""})
-				End If
-			Next
-
+			AddGamesForSystem("\mednafen\roms\ngp", "zip", "NGP")
 		End If
 
 		If _system = "all" Or _system = "gba" Then
-			If Not Directory.Exists(NullDCPath & "\mednafen\roms\gba") Then Directory.CreateDirectory(NullDCPath & "\mednafen\roms\gba")
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\gba", "*.zip", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".zip", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("GBA-" & RomName) Then
-					GamesList.Add("GBA-" & RomName, {GameName, RomPath, "gba", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\gba", "*.gba", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".gba", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("GBA-" & RomName) Then
-					GamesList.Add("GBA-" & RomName, {GameName, RomPath, "gba", ""})
-				End If
-			Next
+			AddGamesForSystem("\mednafen\roms\gba", "zip", "GBA")
+			AddGamesForSystem("\mednafen\roms\gba", "gba", "GBA")
 		End If
 
 		If _system = "all" Or _system = "gbc" Then
-			If Not Directory.Exists(NullDCPath & "\mednafen\roms\gbc") Then Directory.CreateDirectory(NullDCPath & "\mednafen\roms\gbc")
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\gbc", "*.zip", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".zip", "").Replace(",", ".")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("GBC-" & RomName) Then
-					GamesList.Add("GBC-" & RomName, {GameName, RomPath, "gbc", ""})
-				End If
-			Next
-
-			Files = Directory.GetFiles(NullDCPath & "\mednafen\roms\gbc", "*.gbc", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".gbc", "").Replace(",", ".").Replace("_", " ")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("GBC-" & RomName) Then
-					GamesList.Add("GBC-" & RomName, {GameName, RomPath, "gbc", ""})
-				End If
-			Next
-
+			AddGamesForSystem("\mednafen\roms\gbc", "zip", "GBC")
+			AddGamesForSystem("\mednafen\roms\gbc", "gbc", "GBC")
 		End If
 
 		If _system = "all" Or _system = "n64" Then
-			If Not Directory.Exists(NullDCPath & "\Mupen64Plus\roms") Then Directory.CreateDirectory(NullDCPath & "\Mupen64Plus\roms")
+			AddGamesForSystem("\Mupen64Plus\roms", "z64", "N64")
+			AddGamesForSystem("\Mupen64Plus\roms", "n64", "N64")
+			AddGamesForSystem("\Mupen64Plus\roms", "v64", "N64")
+			AddGamesForSystem("\Mupen64Plus\roms", "zip", "N64")
+			AddGamesForSystem("\Mupen64Plus\roms", "7z", "N64")
+		End If
+	
+		If _system = "all" Or _system.EndsWith("_na") Then
+			AddGamesForSystem("\flycast\roms\naomi", "zip", "FLY_NA")
+		End If
 
-			' z64
-			Files = Directory.GetFiles(NullDCPath & "\Mupen64Plus\roms", "*.z64", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".z64", "").Replace(".Z64", "").Replace(",", ".")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("N64-" & RomName) Then
-					GamesList.Add("N64-" & RomName, {GameName, RomPath, "n64", ""})
-				End If
-			Next
-
-			' n64
-			Files = Directory.GetFiles(NullDCPath & "\Mupen64Plus\roms", "*.n64", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".n64", "").Replace(".N64", "").Replace(",", ".")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("N64-" & RomName) Then
-					GamesList.Add("N64-" & RomName, {GameName, RomPath, "n64", ""})
-				End If
-			Next
-
-			' v64
-			Files = Directory.GetFiles(NullDCPath & "\Mupen64Plus\roms", "*.v64", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".v64", "").Replace(".V64", "").Replace(",", ".")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("N64-" & RomName) Then
-					GamesList.Add("N64-" & RomName, {GameName, RomPath, "n64", ""})
-				End If
-			Next
-
-			' zip
-			Files = Directory.GetFiles(NullDCPath & "\Mupen64Plus\roms", "*.zip", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".zip", "").Replace(".ZIP", "").Replace(",", ".")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("N64-" & RomName) Then
-					GamesList.Add("N64-" & RomName, {GameName, RomPath, "n64", ""})
-				End If
-			Next
-
-			' 7z
-			Files = Directory.GetFiles(NullDCPath & "\Mupen64Plus\roms", "*.7z", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".7z", "").Replace(".7Z", "").Replace(",", ".")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("N64-" & RomName) Then
-					GamesList.Add("N64-" & RomName, {GameName, RomPath, "n64", ""})
-				End If
-			Next
-
-			' Flycast NAOMI
-			Files = Directory.GetFiles(NullDCPath & "\flycast\roms\naomi", "*.zip", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".zip", "").Replace(",", ".")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("FLY-" & RomName) Then
-					GamesList.Add("FLY_NA-" & RomName, {GameName, RomPath, "fly_na", ""})
-				End If
-			Next
-
-			' Flycast DREAMCAST
-			Files = Directory.GetFiles(NullDCPath & "\flycast\roms\dreamcast", "*.chd", SearchOption.AllDirectories)
-			For Each _file In Files
-				Dim GameName_Split As String() = _file.Split("\")
-				Dim GameName As String = GameName_Split(GameName_Split.Count - 1).Trim.Replace(".chd", "").Replace(",", ".")
-				Dim RomName As String = GameName_Split(GameName_Split.Count - 1).Replace(",", ".")
-				Dim RomPath As String = _file.Replace(NullDCPath, "")
-
-				If Not GamesList.ContainsKey("FLY-" & RomName) Then
-					GamesList.Add("FLY_DC-" & RomName, {GameName, RomPath, "fly_dc", ""})
-				End If
-			Next
-
+		If _system = "all" Or _system.EndsWith("_dc") Then
+			AddGamesForSystem("\flycast\roms\dreamcast", "chd", "FLY_DC")
 		End If
 
 		' New Games List Code
@@ -1340,7 +951,6 @@ UpdateTry:
 	End Sub
 
 	Public Sub GameLauncher(ByVal _romname As String, ByVal _region As String)
-
 		Select Case MainformRef.ConfigFile.Game.Split("-")(0).ToLower
 			Case "fc_dc", "fc_na", "fly_na", "fly_dc"
 				FlycastLauncher.LaunchFlycast(_romname, _region)
@@ -1536,7 +1146,7 @@ UpdateTry:
 			Rx.VMU = Nothing
 			Rx.VMUPieces = New ArrayList From {"", "", "", "", "", "", "", "", "", ""}
 
-			MsgBox("Failed to Join Host. Error: " & ex.Message)
+			MsgBox("Failed to join host." & vbNewLine & "Error: " & ex.Message)
 
 		End Try
 
@@ -1626,16 +1236,15 @@ UpdateTry:
 				End Select
 			End If
 
-			ListViewToUse.Invoke(
-				Sub()
-					For Each playerentry As ListViewItem In ListViewToUse.Items
-						If playerentry.SubItems(1).Text.Split(":")(0).Trim = Player.ip.Trim Then
-							FoundEntry = playerentry
-							Exit For
-						End If
+			ListViewToUse.Invoke(Sub()
+				For Each playerentry As ListViewItem In ListViewToUse.Items
+					If playerentry.SubItems(1).Text.Split(":")(0).Trim = Player.ip.Trim Then
+						FoundEntry = playerentry
+						Exit For
+					End If
 
-					Next
-				End Sub)
+				Next
+			End Sub)
 
 
 			If FoundEntry Is Nothing Then
@@ -1662,51 +1271,46 @@ UpdateTry:
 				End If
 
 				ListViewToUse.Invoke(Sub()
-										 ListViewToUse.Items.Add(PlayerInfo)
-									 End Sub)
+					ListViewToUse.Items.Add(PlayerInfo)
+				End Sub)
 
 				If Not Player.name.StartsWith(MainformRef.ConfigFile.Name) Then
 					Try
-						Dim pingthread As Thread = New Thread(
-							Sub()
-								Try
-									Thread.Sleep(250 + (250 * ItemNumber)) : Dim ping As PingReply = New Ping().Send(Player.ip, 1000)
-									ListViewToUse.Invoke(
-									Sub()
-										Try
-											If Not ping.RoundtripTime = 0 Then PlayerInfo.SubItems(2).Text = ping.RoundtripTime
-											ListViewToUse.Sort()
-										Catch ex As Exception : End Try
-									End Sub)
+						Dim pingthread As Thread = New Thread(Sub()
+							Try
+								Thread.Sleep(250 + (250 * ItemNumber)) : Dim ping As PingReply = New Ping().Send(Player.ip, 1000)
+								ListViewToUse.Invoke(
+								Sub()
+									Try
+										If Not ping.RoundtripTime = 0 Then PlayerInfo.SubItems(2).Text = ping.RoundtripTime
+										ListViewToUse.Sort()
+									Catch ex As Exception : End Try
+								End Sub)
 
-								Catch ex As Exception
+							Catch ex As Exception
 
-								End Try
-
-							End Sub)
+							End Try
+						End Sub)
 
 						pingthread.IsBackground = True
 						pingthread.Start()
-
 					Catch ex As Exception
 
 					End Try
 				Else
 					MainformRef.Invoke(Sub()
-										   ListViewToUse.Items(ItemNumber).SubItems(2).Text = "0"
-										   ListViewToUse.Sort()
-									   End Sub)
+						ListViewToUse.Items(ItemNumber).SubItems(2).Text = "0"
+						ListViewToUse.Sort()
+					End Sub)
 				End If
 
 
 
 			Else
-				ListViewToUse.Invoke(
-					Sub()
-						FoundEntry.SubItems(0).Text = Player.name
-						FoundEntry.SubItems(1).Text = Player.ip & ":" & Player.port
-
-					End Sub)
+				ListViewToUse.Invoke(Sub()
+					FoundEntry.SubItems(0).Text = Player.name
+					FoundEntry.SubItems(1).Text = Player.ip & ":" & Player.port
+				End Sub)
 
 				If Not Player.name.StartsWith(MainformRef.ConfigFile.Name) Then
 					Try
@@ -1731,54 +1335,53 @@ UpdateTry:
 
 				End If
 
-				ListViewToUse.Invoke(
-					Sub()
-						FoundEntry.SubItems(3).Text = Player.game
-						FoundEntry.SubItems(4).Text = Player.status
-						FoundEntry.ImageIndex = IconIndex
-						If Not Player.secretsettings = "" Then
-							FoundEntry.ForeColor = ColorTranslator.FromHtml(Player.secretsettings)
-						End If
+				ListViewToUse.Invoke(Sub()
+					FoundEntry.SubItems(3).Text = Player.game
+					FoundEntry.SubItems(4).Text = Player.status
+					FoundEntry.ImageIndex = IconIndex
+					If Not Player.secretsettings = "" Then
+						FoundEntry.ForeColor = ColorTranslator.FromHtml(Player.secretsettings)
+					End If
 
 
 
-						If ListViewToUse Is PlayerList Then
-							If Player.status = "Idle" Then
-								FoundEntry.Group = ListViewToUse.Groups(0)
-							Else
-								FoundEntry.Group = ListViewToUse.Groups(1)
-
-							End If
+					If ListViewToUse Is PlayerList Then
+						If Player.status = "Idle" Then
+							FoundEntry.Group = ListViewToUse.Groups(0)
 						Else
-							FoundEntry.Group = Nothing
+							FoundEntry.Group = ListViewToUse.Groups(1)
+
 						End If
+					Else
+						FoundEntry.Group = Nothing
+					End If
 
 
-					End Sub)
+				End Sub)
 			End If
 
 			MainformRef.Invoke(Sub()
-								   ' Remove from the other list
-								   If ListViewToUse Is Matchlist Then
+			        ' Remove from the other list
+			        If ListViewToUse Is Matchlist Then
 
-									   For Each playerentry As ListViewItem In PlayerList.Items
-										   If playerentry.SubItems(1).Text.Split(":")(0).Trim = Player.ip.Trim Then
-											   PlayerList.Items.Remove(playerentry)
-											   Exit For
-										   End If
-									   Next
+			     	   For Each playerentry As ListViewItem In PlayerList.Items
+			     		   If playerentry.SubItems(1).Text.Split(":")(0).Trim = Player.ip.Trim Then
+			     			   PlayerList.Items.Remove(playerentry)
+			     			   Exit For
+			     		   End If
+			     	   Next
 
-								   Else
-									   For Each playerentry As ListViewItem In Matchlist.Items
-										   If playerentry.SubItems(1).Text.Split(":")(0).Trim = Player.ip.Trim Then
-											   Matchlist.Items.Remove(playerentry)
-											   Exit For
-										   End If
-									   Next
-								   End If
+			        Else
+			     	   For Each playerentry As ListViewItem In Matchlist.Items
+			     		   If playerentry.SubItems(1).Text.Split(":")(0).Trim = Player.ip.Trim Then
+			     			   Matchlist.Items.Remove(playerentry)
+			     			   Exit For
+			     		   End If
+			     	   Next
+			        End If
 
-								   ListViewToUse.Sort()
-							   End Sub)
+			        ListViewToUse.Sort()
+			End Sub)
 
 		Catch ex As Exception
 			'MsgBox("Error Adding Player: " & ex.Message)
@@ -1847,11 +1450,11 @@ UpdateTry:
 			Select Case Reason
 				Case "HO"
 					Challenger = Nothing
-					Message = "Played isn't hosting anymore"
+					Message = "The Player isn't hosting anymore."
 					NotificationForm.ShowMessage(Message)
 				Case "HA"
 					Challenger = Nothing
-					Message = "Player is already hosting a game, refresh and join their game"
+					Message = "The Player is already hosting a game. Refresh and join their game."
 					NotificationForm.ShowMessage(Message)
 			End Select
 
@@ -1876,51 +1479,51 @@ UpdateTry:
 
 			Select Case Reason
 				Case "D"
-					Message = "Player was too scared of you to accept."
+					Message = "The Player was too scared of you to accept."
 				Case "T"
-					Message = "Player might be asleep, request timed out."
+					Message = "Request timed out. The Player might be asleep."
 				Case "C"
-					Message = "Player changed their mind."
+					Message = "The Player changed their mind."
 				Case "H"
-					Message = "The host quit"
+					Message = "The Host quit."
 				Case "E"
-					Message = "Other Player Left"
+					Message = "The other Player left."
 				Case "BB"
-					Message = "Player is currently challenging someone"
+					Message = "The Player is currently challenging someone."
 				Case "Q"
-					Message = "Player quit"
+					Message = "The Player quit."
 				Case "VM"
-					Message = "PLAYER IS USING OTHER BEAR VERSION"
+					Message = "The Player is using another BEAR version."
 				Case "BI"
-					Message = "Player is already in a game"
+					Message = "The Player is already in a game."
 				Case "NG"
-					Message = "Player doesn't have this game or rom names do not match"
+					Message = "The Player doesn't have this game or the ROM names don't match."
 				Case "BO"
-					Message = "Challanger got bored of waiting"
+					Message = "The Challenger got bored of waiting."
 				Case "HO"
-					Message = "Player Stopped Hosting, refresh the list plox"
+					Message = "The Player stopped hosting. Refresh the player list."
 				Case "BH"
-					Message = "Host hasn't started a game yet"
+					Message = "The Host hasn't started a game yet."
 				Case "BW"
-					Message = "Player is connecting to someone else"
+					Message = "The Player is connecting to someone else."
 				Case "BC"
-					Message = "Player is being challenged by someone else"
+					Message = "The Player is being challenged by someone else."
 				Case "SP"
-					Message = "Player is setting up BEAR"
+					Message = "The Player is setting up BEAR."
 				Case "NS"
-					Message = "Player does not allow spectators"
+					Message = "The Player does not accept spectators."
 				Case "NSS"
-					Message = "Player is spectating or watching a replay, can't spectate them."
+					Message = "The Player is currently spectating or watching a replay."
 				Case "DND"
-					Message = "Player is not accepting challenges right now."
+					Message = "The Player is not currently accepting challenges."
 				Case "NDC"
-					Message = "Cannot Spectate Offline Dreamcast game (Yet)"
+					Message = "You can't spectate offline Dreamcast games yet."
 				Case "MDH"
-					Message = "Try connecting to the HOST"
+					Message = "Try connecting to the Host."
 				Case "MDN"
-					Message = "Player is playing offline"
+					Message = "The Player is playing offline."
 				Case "MDP"
-					Message = "You cannot join Private Games"
+					Message = "You can't join private games."
 			End Select
 
 			If Not Message = "" Then NotificationForm.ShowMessage(Message)
@@ -1960,7 +1563,7 @@ UpdateTry:
 		End If
 
 		If GamesList.Count = 0 Then
-			NotificationForm.ShowMessage("You don't have any games, click the freeDLC to get some.")
+			NotificationForm.ShowMessage("You don't have any games, check Free DLC to get some.")
 			Exit Sub
 		End If
 		GameSelectForm.StartChallenge()
@@ -1972,7 +1575,6 @@ UpdateTry:
 	End Sub
 
 	Private Sub RefreshPlayerList(Optional ByVal StartTimer As Boolean = True)
-
 		If Not RefreshTimer.Enabled Then
 			If StartTimer Then
 				Matchlist.Items.Clear()
@@ -2029,12 +1631,12 @@ UpdateTry:
 		If GameSelectForm.Visible Then GameSelectForm.Close()
 
 		If Challenger IsNot Nothing Or GameSelectForm.Visible Then
-			NotificationForm.ShowMessage("You Are already Challenging someone else")
+			NotificationForm.ShowMessage("You are already challenging someone else.")
 			Exit Sub
 		End If
 
 		If SelectedPlayer Is Nothing Then
-			NotificationForm.ShowMessage("You can't the fight wall, choose a player from the list")
+			NotificationForm.ShowMessage("You can't fight the wall, choose a player from the list.")
 			Exit Sub
 		End If
 
@@ -2045,12 +1647,12 @@ UpdateTry:
 
 		' Check if it's N64 if it is then don't allow challanges
 		If SelectedPlayer.game.StartsWith("N64") Then
-			NotificationForm.ShowMessage("N64 Netplay coming soon...")
+			NotificationForm.ShowMessage("N64 netplay coming soon...")
 			Exit Sub
 		End If
 
 		If SelectedPlayer.game.StartsWith("FC_") Or SelectedPlayer.game.StartsWith("FLY") Then
-			NotificationForm.ShowMessage("Flycast Spectating Coming Soon...")
+			NotificationForm.ShowMessage("Flycast spectating coming soon...")
 			Exit Sub
 		End If
 
@@ -2064,16 +1666,15 @@ UpdateTry:
 		Console.WriteLine("Challange: " & c_ip)
 		' Skip game Selection if person is already in a game, try to spectate instead.
 		If Not c_status = "Idle" And Not c_status = "LFG" Then ' this person is playing SOMETHING so lets try to challange them and see what they reply
-
 			If c_status = "DND" Then
-				NotificationForm.ShowMessage("Player is not accepting challenges right now.")
+				NotificationForm.ShowMessage("Player is not currently accepting challenges.")
 				Exit Sub
 			End If
 
 			' Check if you have the game
 			If Not GamesList.ContainsKey(c_gamerom) Then
 				'MsgBox(c_gamerom)
-				NotificationForm.ShowMessage("You don't have this game (" & c_gamerom & ") not found.")
+				NotificationForm.ShowMessage("You don't have this game:" & vbNewLine & c_gamerom)
 				Exit Sub
 			End If
 
@@ -2093,14 +1694,14 @@ UpdateTry:
 
 	Private Sub btnHost_Click(sender As Object, e As EventArgs)
 		If IsNullDCRunning() Then
-			NotificationForm.ShowMessage("Can't Host and play at the same time!")
+			NotificationForm.ShowMessage("You can't host and play at the same time!")
 			Exit Sub
 		End If
 
 		If Challenger Is Nothing Then
 			OpenHostingPanel()
 		Else
-			NotificationForm.ShowMessage("I mean i admire your multitasking you can't fight two people at once")
+			NotificationForm.ShowMessage("I mean, I admire your multitasking, but you can't fight two people at once.")
 		End If
 
 	End Sub
@@ -2136,7 +1737,7 @@ UpdateTry:
 			If ConfigFile.MinimizeToTray = 1 Then
 				niBEAR.Visible = True
 				niBEAR.BalloonTipIcon = ToolTipIcon.None
-				niBEAR.BalloonTipTitle = "NulDC BEAR"
+				niBEAR.BalloonTipTitle = "NullDC BEAR"
 				niBEAR.BalloonTipText = "Aight, I'll be here if you need me."
 				niBEAR.ShowBalloonTip(50000)
 				ShowInTaskbar = False ' this removes the form from the openforms... so gona disable it for now
@@ -2230,10 +1831,10 @@ UpdateTry:
 		Else
 			PlayerList.SelectedItems.Clear()
 			SelectedPlayer = New BEARPlayer(Matchlist.SelectedItems(0).SubItems(0).Text,
-											Matchlist.SelectedItems(0).SubItems(1).Text.Split(":")(0),
-											Matchlist.SelectedItems(0).SubItems(1).Text.Split(":")(1),
-											Matchlist.SelectedItems(0).SubItems(3).Text,
-											Matchlist.SelectedItems(0).SubItems(4).Text)
+				Matchlist.SelectedItems(0).SubItems(1).Text.Split(":")(0),
+				Matchlist.SelectedItems(0).SubItems(1).Text.Split(":")(1),
+				Matchlist.SelectedItems(0).SubItems(3).Text,
+				Matchlist.SelectedItems(0).SubItems(4).Text)
 			If SelectedPlayer.game = "None" Then
 				BtnJoin.Text = "Challenge"
 				BtnJoin.Enabled = True
@@ -2254,10 +1855,10 @@ UpdateTry:
 		Else
 			Matchlist.SelectedItems.Clear()
 			SelectedPlayer = New BEARPlayer(PlayerList.SelectedItems(0).SubItems(0).Text,
-											PlayerList.SelectedItems(0).SubItems(1).Text.Split(":")(0),
-											PlayerList.SelectedItems(0).SubItems(1).Text.Split(":")(1),
-											PlayerList.SelectedItems(0).SubItems(3).Text,
-											PlayerList.SelectedItems(0).SubItems(4).Text)
+				PlayerList.SelectedItems(0).SubItems(1).Text.Split(":")(0),
+				PlayerList.SelectedItems(0).SubItems(1).Text.Split(":")(1),
+				PlayerList.SelectedItems(0).SubItems(3).Text,
+				PlayerList.SelectedItems(0).SubItems(4).Text)
 			If SelectedPlayer.game = "None" Then
 				BtnJoin.Text = "Challenge"
 				BtnJoin.Enabled = True
@@ -2386,9 +1987,9 @@ UpdateTry:
 
 
 			If IsUserGagged(SelectedPlayer.ip) Then
-				sender.Items(3).Text = "Ungag(Unblock)"
+				sender.Items(3).Text = "Ungag"
 			Else
-				sender.Items(3).Text = "Gag(Block)"
+				sender.Items(3).Text = "Gag"
 			End If
 
 		End If
@@ -2429,7 +2030,7 @@ UpdateTry:
 			GaggedUsers.Remove(SelectedPlayer.ip)
 		Else
 			If SelectedPlayer.name.StartsWith(ConfigFile.Name) Then
-				NotificationForm.ShowMessage("You can't block yourself... If this is not you. Change name, block and change back")
+				NotificationForm.ShowMessage("You can't block yourself." & vbNewLine & "If this is not you, change your name, block and change back")
 				Exit Sub
 			End If
 

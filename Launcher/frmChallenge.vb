@@ -122,7 +122,7 @@ Public Class frmChallenge
 				'pingThread.Join()
 
 			Catch ex As Exception
-				MsgBox("Error Pinging Player")
+				MsgBox("Error pinging Player.")
 			End Try
 
 			Try
